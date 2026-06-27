@@ -4,9 +4,11 @@ import Landing from './components/Landing.jsx';
 
 const DocsLayout = lazy(() => import('./components/DocsLayout.jsx'));
 
+const basename = window.location.pathname.startsWith('/vibegx') ? '/vibegx' : '/';
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Suspense fallback={
         <div className="content-area" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
           <div className="loading-state">
