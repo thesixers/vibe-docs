@@ -13,7 +13,8 @@ export default function SearchModal({ isOpen, onClose, onNavigate }) {
     async function loadDocs() {
       try {
         const fetches = ALL_PAGES.map(async page => {
-          const res = await fetch(page.file);
+          const fileUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}${page.file}`;
+          const res = await fetch(fileUrl);
           if (!res.ok) return { ...page, text: '' };
           const text = await res.text();
           // Strip basic markdown syntax for cleaner search text

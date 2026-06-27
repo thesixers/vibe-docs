@@ -28,7 +28,8 @@ export default function DocContent({ page, onNavigate }) {
     setError(null);
     setHtml('');
 
-    fetch(page.file)
+    const fileUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}${page.file}`;
+    fetch(fileUrl)
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.text(); })
       .then(md => { if (!cancelled) { setHtml(marked.parse(md)); setLoading(false); } })
       .catch(err => { if (!cancelled) { setError(err.message); setLoading(false); } });
